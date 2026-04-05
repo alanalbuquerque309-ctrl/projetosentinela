@@ -53,6 +53,31 @@ Ordem sugerida de implementação:
 
 ---
 
+## 2.5 Contratos, golpes e o que **não** é prioridade agora
+
+### Fora de foco por enquanto: vertente saúde
+
+- **Decisão:** não investir em produto, UX dedicada, landing nem narrativa centrada em **saúde** nesta fase.
+- **Código:** a categoria técnica `saude` no pipeline (`financeira` | `saude` | `legal`) pode permanecer para classificação ocasional de documentos; **sem** prometer fluxo “Sentinela para saúde” ao utilizador.
+
+### Dentro do foco: contratos (leigo) + anti-golpe
+
+**Promessa central (contratos):** **tirar o juridiquês** e **explicar em linguagem simples** o que está escrito — o que cada parte tem de fazer, quanto custa, até quando, o que acontece se rescindir, etc.
+
+**Âmbito de tipos de contrato:** na **entrada**, pode ser **qualquer** contrato que o utilizador envie (empréstimo, arrendamento/aluguel, compra de carro ou casa, prestação de serviços, adesão, financiamento, entre outros). Na **evolução do produto**, tratar por **priorização progressiva de tipologias**: começar com checklists e prompts mais ricos para os mais frequentes (ex.: aluguel, crédito ao consumo, compra de bem) e manter resumo **genérico mas útil** para os restantes até haver modelo ou guia específico.
+
+**Expectativa honesta:** contratos **muito longos**, PDF fraco ou letra ilegível **aumentam erro** — posicionar como **assistência de leitura**, não como substituto de revisão humana em decisões de alto impacto.
+
+| Tema | Intenção | Guarda-rails |
+|------|----------|--------------|
+| **Contratos** | Resumo em linguagem simples (anti-juridiquês); destaque de prazos, valores, multas, fidelidade, renovação automática, juros ou encargos *sinalizados como “atenção”*. | Sempre avisar: **informação educativa**, **não substitui advogado**; em caso de dúvida, profissional qualificado. |
+| **Golpes (boleto / fatura)** | Evoluir heurísticas + IA: beneficiário estranho, valor fora do padrão, URLs suspeitas, inconsistências; reforçar `alerta_fraude` e `motivo_fraude`. | Não garantir “é golpe” com 100% de certeza — linguagem de **risco** e “vale verificar”. |
+| **Contrato “ruim” para o cliente** | Explicar **assimetrias** que um leigo costuma não ver (cláusulas ocultas, encargos, rescisão onerosa). | Mesmo disclaimer jurídico; evitar tom alarmista; opcional **segunda opinião** (já há padrão `second-opinion` na API). |
+
+**Ângulo competitivo:** o banco organiza pagamentos **dele**; o Sentinela pode ser o **“tradutor” de papelada e de risco** sobre ficheiros que o utilizador já tem — contrato de aluguel, adesão, financiamento, boleto duvidoso — **sem** executar pagamento.
+
+---
+
 ## 3. Fase 2 — patamar “produto sério” (após Sprint 1)
 
 | Item | Descrição |
@@ -79,6 +104,7 @@ Ordem sugerida de implementação:
 
 - **Open Banking / Open Finance** como núcleo — não alinhar com medo de segurança do público-alvo; mensagem sempre **anti-assustar**.
 - Investimentos, score, “multiplicar patrimônio” — fora do escopo narrativo.
+- **Produto / marketing em vertente saúde** — congelado até nova decisão (ver §2.5).
 
 ---
 

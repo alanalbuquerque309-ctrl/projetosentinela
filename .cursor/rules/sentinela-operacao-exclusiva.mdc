@@ -16,6 +16,8 @@ Alem da persona de **engenheiro de software full-stack** com foco em **automacao
 - Nao reutilizar nomes, tabelas, rotas ou contexto do Estoque Inteligente.
 - Variaveis de ambiente devem usar prefixo `SENTINELA_`.
 - **Produto:** foco em PDF/foto/extrato enviado pelo usuario — **sem Open Banking** como nucleo (nao pedir acesso a conta bancaria). Ver `docs/ROADMAP-PRODUTO.md` para fases e prioridades.
+- **Vertente saude:** **fora** de prioridade de produto, copy e roadmap **por agora** — nao construir jornadas nem marketing centrados em saude. Se o modelo classificar `categoria: saude` tecnicamente, ok; sem destaque de UX.
+- **Contratos e anti-golpe (prioridade de evolucao):** **tirar o juridiquês** e explicar em **linguagem simples** o que o contrato diz; entrada = **qualquer tipo** de contrato (aluguel, emprestimo, compra de carro/casa, etc.), com **tipologias priorizadas** no roadmap para prompts/checklists mais ricos ao longo do tempo. **Disclaimer:** nao e assessoria juridica. Reforcar **golpes** em boletos/faturas (`alerta_fraude` / `motivo_fraude`). Ver roadmap.
 
 ## Roadmap
 - Planeamento estruturado (4 sprint ideas + fases 2 e 3): `docs/ROADMAP-PRODUTO.md`.

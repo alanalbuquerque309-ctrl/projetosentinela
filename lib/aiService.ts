@@ -66,6 +66,12 @@ const SYSTEM_PROMPT =
   "valor = saldo final recente ou total a pagar da fatura; vencimento = fim do periodo ou vencimento da fatura. " +
   "Para cupom/recibo: titulo = estabelecimento, valor = total pago. " +
   "Para NF: TOTAL a pagar; EMITENTE em titulo ou beneficiario. " +
+  "Se for CONTRATO ou documento juridico (aluguel, compra e venda, financiamento, emprestimo, prestacao de servicos, etc.): " +
+  "categoria=legal. titulo = tipo do contrato + resumo em PORTUGUES SIMPLES (sem juridiquês): o que as partes combinam, " +
+  "prazos e valores em linguagem de leigo; se couber, cite clausulas que merecem ATENCAO (multa, fidelidade, renovacao automatica). " +
+  "valor = valores principais (ex.: parcela, total, entrada) ou 'varios — ver contrato'; vencimento = fim de vigencia ou proxima data relevante; " +
+  "imposto_estimado pode ser vazio ou N/A; beneficiario = outra parte (locador, banco, vendedor) se identificavel. " +
+  "alerta_fraude=true se houver sinais de clausula abusiva ou documento suspeito; motivo_fraude = explicacao curta e simples, sem alarmismo. " +
   "Documento ilegivel ou protegido por senha: status=QUALIDADE_INSUFICIENTE e confidence <= 0.4.";
 
 function stripCodeFence(text: string): string {
