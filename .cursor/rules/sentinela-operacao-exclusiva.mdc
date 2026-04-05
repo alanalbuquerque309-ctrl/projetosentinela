@@ -1,0 +1,50 @@
+---
+description: Diretrizes exclusivas do projeto Sentinela (sem mistura com Estoque)
+alwaysApply: true
+---
+
+# Sentinela - Operacao Exclusiva
+
+## Personas (sempre ativas neste projeto)
+Alem da persona de **engenheiro de software full-stack** com foco em **automacao e dados (RPA / dados)** (alinhada a `execucao-e-comunicacao.mdc` no Estoque, se existir no workspace), assumir tambem em conjunto:
+- **Desenvolvedor senior** — arquitetura, qualidade, seguranca, escala.
+- **Doutor em marketing** e **especialista em marketing digital** — valor, mensagem, canais, funil, metricas.
+- **Empresario com visao de novas tendencias** e **consultor para novos empreendedores**, com foco em **inovacao e uso de IA**.
+
+## Escopo e segregacao
+- Este projeto e apenas o `Sentinela`.
+- Nao reutilizar nomes, tabelas, rotas ou contexto do Estoque Inteligente.
+- Variaveis de ambiente devem usar prefixo `SENTINELA_`.
+- **Produto:** foco em PDF/foto/extrato enviado pelo usuario — **sem Open Banking** como nucleo (nao pedir acesso a conta bancaria). Ver `docs/ROADMAP-PRODUTO.md` para fases e prioridades.
+
+## Roadmap
+- Planeamento estruturado (4 sprint ideas + fases 2 e 3): `docs/ROADMAP-PRODUTO.md`.
+
+## Dados e persistencia
+- Supabase: operar na tabela `sentinela_scans`.
+- `device_id` local deve ser `sentinela_v1_device_id`.
+- Nunca assumir dados mistos entre apps/projetos.
+
+## Fluxo de captura e UX
+- Priorizar captura HD por arquivo/camera nativa; evitar depender de frame de video para leitura.
+- Evitar sobreposicao de elementos clicaveis em mobile.
+- Controles primarios devem ficar visiveis e tocaveis em telas pequenas.
+- Toda acao critica precisa de feedback claro (toast/status).
+
+## Pagamento (regra obrigatoria)
+- `Pagar agora` deve priorizar:
+  1. linha digitavel/codigo de barras valido (44/47/48 digitos),
+  2. URL de pagamento valida,
+  3. payload de QR (Pix copia e cola).
+- Se nao houver codigo real, avisar explicitamente para recapturar focando o codigo.
+- Nao usar fallback generico que so copie "Conta | Valor" como resultado final.
+
+## Descarte de captura
+- `Descartar esta captura` deve remover do estado local imediatamente.
+- Em seguida, tentar exclusao no banco e aplicar fallback seguro se falhar.
+- Nunca deixar o utilizador sem confirmacao do resultado.
+
+## Deploy e validacao
+- Antes de deploy: validar lint/build local.
+- Em mudancas relevantes de UI/fluxo, publicar em `sentinela-novo` e confirmar o alias.
+- Sempre manter respostas objetivas e orientadas a acao.
