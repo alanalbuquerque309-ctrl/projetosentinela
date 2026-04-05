@@ -13,6 +13,7 @@ import {
   Receipt,
   Repeat,
   Share2,
+  Shield,
   ShieldAlert,
   Target,
   Wallet,
@@ -1579,7 +1580,11 @@ export default function Home() {
       )}
 
       {!isScanning && (
-        <div className="absolute right-4 top-6 z-30 w-[min(92vw,300px)] rounded-2xl border border-emerald-200/20 bg-black/45 p-3 text-xs backdrop-blur">
+        <div
+          className={`absolute right-4 z-30 w-[min(92vw,300px)] rounded-2xl border border-emerald-200/20 bg-black/45 p-3 text-xs backdrop-blur ${
+            showUpdateBanner ? "top-32 sm:top-28" : "top-6"
+          }`}
+        >
           <p className="font-semibold text-zinc-200">Sua semana em ordem</p>
           <p className="mt-1">
             📋 {totalOpenBills} conta(s) em aberto
@@ -1660,9 +1665,9 @@ export default function Home() {
       />
       <div className="absolute left-1/2 top-24 z-40 w-[min(94vw,520px)] -translate-x-1/2 text-center">
         <p className="text-lg font-bold tracking-tight text-white drop-shadow-md">Sentinela</p>
-        <p className="mt-1 text-xs leading-relaxed text-zinc-300">
-          Menos susto no mes: boletos, faturas e extratos em um so lugar. Nao prometemos riqueza —
-          prometemos clareza para voce planejar ate uma viagem ou um bem, no seu ritmo.
+        <p className="mt-1 text-sm leading-relaxed text-zinc-300">
+          Menos susto no mês: boletos, faturas e extratos num só lugar. Não prometemos riqueza —
+          prometemos clareza para você planear, no seu ritmo.
         </p>
       </div>
 
@@ -1705,7 +1710,18 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="absolute left-1/2 top-[13.5rem] z-40 flex w-[min(94vw,470px)] -translate-x-1/2 items-center gap-2">
+      <div className="absolute left-1/2 top-[12.5rem] z-40 w-[min(94vw,520px)] -translate-x-1/2 px-1">
+        <p className="flex items-start justify-center gap-2 text-center text-xs leading-snug text-emerald-100/90">
+          <Shield className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden />
+          <span>
+            <strong className="font-semibold text-emerald-50">Privacidade:</strong> campos sensíveis são
+            encriptados antes de guardar. Ligação HTTPS. O Sentinela{" "}
+            <span className="whitespace-nowrap">não liga</span> à sua conta bancária.
+          </span>
+        </p>
+      </div>
+
+      <div className="absolute left-1/2 top-[16.25rem] z-40 flex w-[min(94vw,470px)] -translate-x-1/2 items-center gap-2 sm:top-[15.75rem]">
         <button
           type="button"
           onClick={() => {
@@ -1769,11 +1785,11 @@ export default function Home() {
       )}
 
       <section
-        className={`absolute bottom-0 left-0 right-0 z-20 rounded-t-3xl border-t border-white/15 bg-zinc-950/92 p-4 backdrop-blur-xl transition-all duration-300 ${
-          drawerOpen ? "h-[56vh]" : "h-[15vh]"
-        }`}
+        className={`absolute bottom-0 left-0 right-0 z-20 rounded-t-3xl border-t border-white/15 bg-zinc-950/92 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-xl transition-all duration-300 ${
+          drawerOpen ? "h-[min(56vh,calc(100dvh-9rem))]" : "h-[18vh]"
+        } ${drawerOpen ? "overflow-y-auto" : "overflow-hidden"}`}
       >
-        <div className="mx-auto flex h-full w-[min(980px,98vw)] flex-col transition-all duration-300 ease-out">
+        <div className="mx-auto flex min-h-0 w-[min(980px,98vw)] flex-col transition-all duration-300 ease-out">
           <div className="mb-2 flex justify-center">
             <button
               onClick={() => setDrawerOpen((v) => !v)}
@@ -1802,11 +1818,13 @@ export default function Home() {
                 Organizador
               </button>
             </div>
-            <div className={`text-[11px] ${successPulse ? "text-emerald-300" : "text-zinc-400"}`}>
-              {successPulse
-                ? "Mais um passo: sua lista ficou mais clara."
-                : "Contas ou organizador — o que precisa agora?"}
-            </div>
+            {drawerOpen && (
+              <div className={`text-xs leading-snug ${successPulse ? "text-emerald-300" : "text-zinc-400"}`}>
+                {successPulse
+                  ? "Mais um passo: a sua lista ficou mais clara."
+                  : "Contas ou organizador — o que precisa agora?"}
+              </div>
+            )}
           </div>
 
           <div className="mb-3 rounded-xl border border-emerald-300/20 bg-emerald-900/20 px-3 py-2 text-xs text-emerald-100">
@@ -2384,13 +2402,18 @@ export default function Home() {
               </div>
             </div>
           )}
+
+          <div className="mt-auto shrink-0 border-t border-white/10 pt-3">
+            <p className="text-center text-xs leading-relaxed text-zinc-400">
+              O Sentinela ajuda a organizar e a antecipar — sem prometer milagres. Os seus dados, o seu
+              ritmo.
+            </p>
+            <p className="mt-1.5 text-center text-[11px] text-zinc-500">
+              Versão {appVersion}
+            </p>
+          </div>
         </div>
       </section>
-
-      <div className="absolute bottom-1 left-1/2 z-30 w-[min(98vw,980px)] -translate-x-1/2 text-center text-[11px] text-zinc-300/80">
-        🔒 Sentinela ajuda a organizar e prever — sem prometer milagre. Seus dados, seu ritmo.
-        Versao: {appVersion}
-      </div>
 
       {showUsageModal && (
         <div className="absolute inset-0 z-[55] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">

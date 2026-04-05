@@ -106,4 +106,22 @@ Ordem sugerida de implementação:
 
 ---
 
+## 8. Benchmark — app Itaú (“Pague contas” / pagamentos) vs Sentinela
+
+Referência pública (site e ajuda Itaú): [pagamentos no app](https://www.itau.com.br/atendimento-itau/para-voce/pagamentos-transferencias/como-fazer-pagamentos-pelo-aplicativo-itau), [Pague Contas](https://www.itau.com.br/cartoes/servicos/pague-contas), [DDA](https://www.itau.com.br/atendimento-itau/para-voce/pagamentos-transferencias/como-funciona-o-pagamento-por-debito-direto-autorizado-dda). O Itaú é **banco**: executa pagamento, lê código de barras na câmara **dentro do ecossistema da conta**. O Sentinela **não compete** nisso; inspira-se em **organização e hábito**.
+
+| O que o Itaú faz bem (ideias para o Sentinela) | Como adaptar sem virar banco |
+|-----------------------------------------------|------------------------------|
+| **Agendar pagamento para data futura** | “Lembrar-me neste dia” / calendário por conta (já alinhado a lembretes no roadmap). |
+| **Pagar no dia ou agendar** | Nós: “Marcar como paga” + lembrete antes do vencimento (não debitar). |
+| **Lista de contas/boletos com filtros (a vencer / vencidos)** | Já próximo dos filtros “Vencendo em 7 dias” / reforçar **vencidos vs próximos** como no DDA. |
+| **DDA (boletos no CPF na rede)** | Não replicar DDA; opcional futuro: importar **exportação** que o utilizador descarrega do banco (CSV/PDF) — Fase 3. |
+| **Comprovante / histórico longo** | Sentinela: histórico de scans + export CSV/PDF resumo; política de retenção clara na UI. |
+| **Débito automático / parcelamento de boletos** | Fora do escopo; mencionar na copy só como “nós não movimentamos dinheiro”. |
+| **Leitura de código de barras** | Itaú na app do banco; Sentinela: **foto/PDF + IA** (diferencial). |
+
+**Resumo:** roubar **clareza de lista, datas e lembretes**, não **execução de pagamento** nem **ligação à conta**.
+
+---
+
 *Este ficheiro pode ser referenciado nas Cursor Rules do Sentinela para manter o rumo entre sessões.*
